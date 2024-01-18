@@ -1,6 +1,6 @@
 // donate-bitcoin Copyright (GPL) 2016  Nathan Robinson
 
-var address = "bc1qkvx0470ej3p3pnkpsymype6z0fnsplaq3k3j7s"; // The bitcoin address to receive donations. Change to yours
+var address = "43S3veneVq7CAmjzoVH8sLLB1G8M1Hoyw6ChksbNxcApGdbzSPUxgR8TcT5tRMUHFmhAWJ7oqkY3LgbPBpouCzBt6A2bhk3"; // The bitcoin address to receive donations. Change to yours
 var popup = false; // Set to true if you want a popup to pay bitcoin
 var currencyCode = "USD"; // Change to your default currency. Choose from https://blockchain.info/ticker?cors=true
 var qrcode = true; // Set to false to disable qrcode
@@ -64,10 +64,10 @@ if (params.mbits == "false"){mbits = false};
 
 function getBitcoinPrice(currencyExchangeResponse) {
     try {
-        return currencyExchangeResponse[currencyCode]['buy'];
+        return currencyExchangeResponse[currencyCode];
     } catch (err) {
         handlePricingError(currencyExchangeResponse);
-        return currencyExchangeResponse[currencyCode]['buy'];
+        return currencyExchangeResponse[currencyCode];
     }
 }
 
@@ -87,7 +87,7 @@ function drawDonationElements(url, donateDisplayMessage) {
 }
 
 function donate() {
-  $.getJSON("https://blockchain.info/ticker?cors=true", function(currencyExchangeResponse) {
+  $.getJSON("https://min-api.cryptocompare.com/data/price?fsym=XMR&tsyms=BTC,USD,EUR", function(currencyExchangeResponse) {
       var fiatDonationAmount = getFiatDonationAmount();
       var bitcoinPrice = getBitcoinPrice(currencyExchangeResponse);
       var bitcoinAmountToDonate = computeBitcoinAmount(fiatDonationAmount, bitcoinPrice);
