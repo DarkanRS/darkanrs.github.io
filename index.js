@@ -118,7 +118,7 @@ function validAmountRequestedInUrl() {
 }
 
 function getFiatDonationAmount() {
-    // if user sets an amount, we will use it
+    // if user sets an amount, we will use it well
     var fiatUserInput = parseFloat(document.getElementById("donatebox").value);
     if (noValidInput(fiatUserInput) && !validAmountRequestedInUrl()) {
         return defaultAmountToDonate;
